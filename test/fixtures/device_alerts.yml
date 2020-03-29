@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: device_alerts
+#
+#  id         :uuid             not null, primary key
+#  device_id  :uuid
+#  alert      :integer          default("0")
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  device_id: 
+  alert: 0
+
+two:
+  device_id: 
+  alert: 0

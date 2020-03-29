@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: device_locations
+#
+#  id         :uuid             not null, primary key
+#  device_id  :uuid
+#  latitude   :string           default("")
+#  longitude  :string           default("")
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  device_id: 
+  latitude: MyString
+  longitude: MyString
+
+two:
+  device_id: 
+  latitude: MyString
+  longitude: MyString

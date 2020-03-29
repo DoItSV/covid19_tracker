@@ -10,11 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_212544) do
+ActiveRecord::Schema.define(version: 2020_03_29_214228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "device_alerts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "device_id"
+    t.integer "alert", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "device_locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "device_id"
+    t.string "latitude", default: ""
+    t.string "longitude", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "mark_at"
+  end
+
+  create_table "devices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "family", default: ""
+    t.string "name", default: ""
+    t.string "os", default: ""
+    t.string "local_id"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
