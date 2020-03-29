@@ -15,5 +15,5 @@ class Device < ApplicationRecord
   has_many :device_locations
   has_many :device_alerts
 
-  validates :local_id, presence: true, uniqueness: true
+  validates :local_id, presence: true
 end
