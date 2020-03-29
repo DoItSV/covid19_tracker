@@ -8,6 +8,7 @@
 #  longitude  :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  mark_at    :datetime
 #
 require 'test_helper'
 
