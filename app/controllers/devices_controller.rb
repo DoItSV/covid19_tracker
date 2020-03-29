@@ -13,7 +13,7 @@ class DevicesController < ApplicationController
   protected
 
   def device
-    @device ||= device_scope.find_by(local_id: params[:id])
+    @device ||= device_scope.find_by(id: params[:device_id] || params[:id])
   end
 
   def build_device
