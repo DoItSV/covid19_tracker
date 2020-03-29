@@ -15,5 +15,5 @@ REST API for COVID-19 Tracker apps based on [SafePaths](http://safepaths.mit.edu
 3. `rails db:migrate`
 4. `rails s`
 
-## Idea (Spanish)
+## Sketch (Spanish)
 ![Idea in Spanish](https://raw.githubusercontent.com/DoItSV/covid19_tracker/master/public/idea.png)
