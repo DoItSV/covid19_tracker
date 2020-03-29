@@ -1,4 +1,4 @@
-class Devices::AlertsController < ApplicationController
+class Devices::AlertsController < DevicesController
   def index
     render_json(serializer, alerts)
   end
@@ -47,6 +47,6 @@ class Devices::AlertsController < ApplicationController
   private
 
   def serializer
-    DevicealertSerializer
+    DeviceAlertSerializer
   end
 end

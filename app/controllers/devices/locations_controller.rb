@@ -1,4 +1,4 @@
-class Devices::LocationsController < ApplicationController
+class Devices::LocationsController < DevicesController
   def index
     render_json(serializer, locations)
   end

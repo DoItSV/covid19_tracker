@@ -11,5 +11,5 @@
 class DeviceAlert < ApplicationRecord
   belongs_to :device
 
-  enum kind: %i[symptoms covid19]
+  enum alert: %i[symptoms covid19]
 end
