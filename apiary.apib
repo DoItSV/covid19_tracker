@@ -3,14 +3,15 @@ HOST: https://api.covid19trackersv.com/
 
 # COVID-19 Tracker
 
-covid19_tracker is a simple API for supporting COVID-19 Tracker apps.
+covid19_tracker is a simple API for supporting COVID-19 Tracker apps based on http://safepaths.mit.edu/
 
 ## Devices [/devices]
 
 ### Create a New Device [POST]
 
 When the user opens the app for the first time it is needed to create a Device, which id is going
-to be used as a basic auth system including in the endpoints URLs.
+to be used as a basic auth system including in the endpoints URLs. The id returned should be stored
+for future use.
 
 + Request (application/json)
 
@@ -45,19 +46,25 @@ to be used as a basic auth system including in the endpoints URLs.
 
 ## Locations [/devices/:device_id/locations]
 
-### Create a New Location [POST]
+### Create a New Locations [POST]
 
-When the user opens the app for the first time it is needed to create a Device, which id is going
-to be used as a basic auth system including in the endpoints URLs.
+The app is going to be able to upload an array of locations gathered by the device.
 
 + Request (application/json)
 
         {
-            "location": {
-                "latitude": "37.774929",
-                "name": "longitude",
-                "mark_at": "2020-03-30 12:27:49.711746 -0500"
-            }
+            "locations": [
+                {
+                    "latitude": "37.774929",
+                    "longitude": "-122.419418",
+                    "mark_at": "2020-03-30 12:27:49.711746 -0500"
+                },
+                {
+                    "latitude": "37.774931",
+                    "longitude": "-122.419418",
+                    "mark_at": "2020-03-30 12:27:49.711750 -0500"
+                }
+            ]
         }
 
 + Response 201 (application/json)
@@ -70,13 +77,20 @@ to be used as a basic auth system including in the endpoints URLs.
 
             {
                 "data": {
-                    "id": "5fe73098-95d7-4326-ba41-74193f4faea3",
-                    "type": "device_location",
-                    "attributes": {
-                        "device_id": "7757f41a-dd27-4008-aa11-f0018028b133",
-                        "latitude": "37.774929",
-                        "longitude": "-122.419418",
-                        "mark_at": "2020-03-30 12:27:49.711746 -0500"
+                    "locations": [
+                        {
+                            "device_id": "7757f41a-dd27-4008-aa11-f0018028b133",
+                            "latitude": "37.774929",
+                            "longitude": "-122.419418",
+                            "mark_at": "2020-03-30 12:27:49.711746 -0500"
+                        },
+                        {
+                            "device_id": "7757f41a-dd27-4008-aa11-f0018028b133",
+                            "latitude": "37.774931",
+                            "longitude": "-122.419418",
+                            "mark_at": "2020-03-30 12:27:49.711750 -0500"
+                        },
+                    ],
                 }
             }
 
@@ -84,8 +98,9 @@ to be used as a basic auth system including in the endpoints URLs.
 
 ### Create a New Alert [POST]
 
-When the user opens the app for the first time it is needed to create a Device, which id is going
-to be used as a basic auth system including in the endpoints URLs.
+Creates an alert about the status of the device. The two types for alert (which is an enum)
+are: `symptoms` if the user presents symptoms related to COVID-19 and `covid19` if the user is
+COVID-19 positive.
 
 + Request (application/json)
 
