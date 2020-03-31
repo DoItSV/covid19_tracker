@@ -1,0 +1,114 @@
+FORMAT: 1A
+HOST: https://api.covid19trackersv.com/
+
+# COVID-19 Tracker
+
+covid19_tracker is a simple API for supporting COVID-19 Tracker apps.
+
+## Devices [/devices]
+
+### Create a New Device [POST]
+
+When the user opens the app for the first time it is needed to create a Device, which id is going
+to be used as a basic auth system including in the endpoints URLs.
+
++ Request (application/json)
+
+        {
+            "device": {
+                "family": "Apple",
+                "name": "iPhone",
+                "os": "iOS 13",
+                "local_id": "d295036b-6a36-4754-9e14-cddea3a3fcf2"
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /devices/
+
+    + Body
+
+            {
+                "data": {
+                    "id": "7757f41a-dd27-4008-aa11-f0018028b133",
+                    "type": "device",
+                    "attributes": {
+                        "family": "Apple",
+                        "name": "iPhone",
+                        "os": "iOS 13",
+                        "local_id": "d295036b-6a36-4754-9e14-cddea3a3fcf2"
+                }
+            }
+
+## Locations [/devices/:device_id/locations]
+
+### Create a New Location [POST]
+
+When the user opens the app for the first time it is needed to create a Device, which id is going
+to be used as a basic auth system including in the endpoints URLs.
+
++ Request (application/json)
+
+        {
+            "location": {
+                "latitude": "37.774929",
+                "name": "longitude",
+                "mark_at": "2020-03-30 12:27:49.711746 -0500"
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /devices/:device_id/:locations
+
+    + Body
+
+            {
+                "data": {
+                    "id": "5fe73098-95d7-4326-ba41-74193f4faea3",
+                    "type": "device_location",
+                    "attributes": {
+                        "device_id": "7757f41a-dd27-4008-aa11-f0018028b133",
+                        "latitude": "37.774929",
+                        "longitude": "-122.419418",
+                        "mark_at": "2020-03-30 12:27:49.711746 -0500"
+                }
+            }
+
+## Alerts [/devices/:device_id/alerts]
+
+### Create a New Alert [POST]
+
+When the user opens the app for the first time it is needed to create a Device, which id is going
+to be used as a basic auth system including in the endpoints URLs.
+
++ Request (application/json)
+
+        {
+            "alert": {
+                "alert": "covid19"
+            }
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /devices/:device_id/:alerts
+
+    + Body
+
+            {
+                "data": {
+                    "id": "7d1c0fa5-7c2d-4eed-bc96-98e897fff667",
+                    "type": "device_alert",
+                    "attributes": {
+                        "device_id": "7757f41a-dd27-4008-aa11-f0018028b133",
+                        "alert": "covid19"
+                }
+            }
