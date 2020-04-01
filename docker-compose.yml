@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+  api_rails:
+    build: .
+      # args:
+      #   PORT: 3000
+    env_file:
+      - .env.docker-compose
+    volumes:
+      - $PWD:/usr/src/app/
+      - gems:/usr/local/bundle/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
+  # api_worker:
+  #   <<: *rails
+  #   command: ["bin/bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
+  #   ports: []
+
+  postgres:
+    image: postgres:10.7-alpine
+    environment:
+      POSTGRES_USER: "covid19_tracker"
+      POSTGRES_PASSWORD: "covid19_tracker"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    # networks:
+    #   - covid-tracker
+
+  redis:
+    image: redis:4.0-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    # networks:
+    #   - covid-tracker
+
+volumes:
+  gems: {}
+  postgres: {}
+  redis: {}
+
+# networks:
+#   covid-tracker:
+#     external:
+#       name: covid-tracker
