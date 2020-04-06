@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: covid19_tracker_production
-  username: covid19_tracker
-  password: <%= ENV['COVID19_TRACKER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
