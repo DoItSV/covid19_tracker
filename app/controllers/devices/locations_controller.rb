@@ -8,10 +8,8 @@ class Devices::LocationsController < DevicesController
   end
 
   def create
-    build_location
-    return render_json(serializer, location) if save_location
-
-    render json: { errors: location.errors.full_messages }, status: :bad_request
+    create_locations
+    render_json(serializer, locations)
   end
 
   protected
@@ -24,24 +22,19 @@ class Devices::LocationsController < DevicesController
     @location ||= location_scope.find_by(id: params[:location_id] || params[:id])
   end
 
-  def build_location
-    @location ||= location_scope.build
-    @location.assign_attributes(location_params)
-  end
-
-  def save_location
-    @location.save
+  def create_locations
+    @locations = []
+    locations_params.each do |location_params|
+      @locations << location_scope.create!(location_params.permit(:latitude, :longitude, :mark_at))
+    end
   end
 
   def location_scope
     device.device_locations
   end
 
-  def location_params
-    location_params = params[:location]
-    return {} unless location_params
-
-    location_params.permit(:latitude, :longitude, :mark_at)
+  def locations_params
+    params[:locations] || []
   end
 
   private
