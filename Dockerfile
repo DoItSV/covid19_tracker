@@ -1,8 +1,7 @@
 FROM ruby:2.7.0
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential && \
-                       libpq-dev tzdata && \
+    apt-get install -y build-essential \
                        --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
